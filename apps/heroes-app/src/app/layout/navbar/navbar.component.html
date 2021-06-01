@@ -1,0 +1,9 @@
+<tui-tabs class="tabs" [activeItemIndex]="activeItemIndex" *ngIf="refresh">
+  <ng-container *ngFor="let tab of tabs">
+    <button tuiTab>
+      <a tuiLink [routerLink]="tab.route" (click)="onClick(tab)">
+        {{ tab.name | translate }}</a
+      >
+    </button>
+  </ng-container>
+</tui-tabs>

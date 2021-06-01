@@ -50,7 +50,12 @@
             "assets": [
               "apps/heroes-app/src/favicon.ico",
               "apps/heroes-app/src/assets",
-              "apps/heroes-app/src/manifest.webmanifest"
+              "apps/heroes-app/src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "node_modules/@taiga-ui/icons/src",
+                "output": "assets/taiga-ui/icons"
+              }
             ],
             "styles": [
               "apps/heroes-app/src/styles.scss",
