@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "heroes-app",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "heroes-app": {
+      "projectType": "application",
+      "root": "apps/heroes-app",
+      "sourceRoot": "apps/heroes-app/src",
+      "prefix": "heroes",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/heroes-app",
+            "index": "apps/heroes-app/src/index.html",
+            "main": "apps/heroes-app/src/main.ts",
+            "polyfills": "apps/heroes-app/src/polyfills.ts",
+            "tsConfig": "apps/heroes-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/heroes-app/src/favicon.ico",
+              "apps/heroes-app/src/assets",
+              "apps/heroes-app/src/manifest.webmanifest"
+            ],
+            "styles": [
+              "apps/heroes-app/src/styles.scss",
+              "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
+              "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less"
+            ],
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "apps/heroes-app/ngsw-config.json"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/heroes-app/src/environments/environment.ts",
+                  "with": "apps/heroes-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "heroes-app:build:production"
+            },
+            "development": {
+              "browserTarget": "heroes-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "heroes-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/heroes-app/src/**/*.ts",
+              "apps/heroes-app/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/heroes-app"],
+          "options": {
+            "jestConfig": "apps/heroes-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "heroes-app-e2e": {
+      "root": "apps/heroes-app-e2e",
+      "sourceRoot": "apps/heroes-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/heroes-app-e2e/cypress.json",
+            "tsConfig": "apps/heroes-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "heroes-app:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "heroes-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/heroes-app-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
