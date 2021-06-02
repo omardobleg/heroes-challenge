@@ -1,5 +1,9 @@
 {
   "APP": {
     "HELLO": "Hello world"
+  },
+  "CHARACTERS":  {
+    "FILTER":"Filter search"
   }
+
 }
