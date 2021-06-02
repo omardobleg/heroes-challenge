@@ -1,3 +1,4 @@
+import { CardConfig } from './../../../../../../../../libs/ui/src/lib/data/card-config.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharactersComponent implements OnInit {
   constructor() {}
-
+  public heroes = ([1, 2, 3] as unknown[]) as CardConfig[];
   ngOnInit(): void {}
 }

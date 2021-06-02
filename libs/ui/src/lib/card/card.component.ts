@@ -1,16 +1,15 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  OnInit,
-  Output,
   EventEmitter,
   Input,
-  ChangeDetectionStrategy,
+  Output,
 } from '@angular/core';
-import { TuiDestroyService, tuiRequiredSetter } from '@taiga-ui/cdk';
+import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiTextAlign } from '@taiga-ui/kit';
-import { Subject, timer } from 'rxjs';
+import { timer } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { CardConfig } from '../data/card-config.model';
-import { map, mapTo, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'heroes-card',
@@ -34,8 +33,8 @@ export class CardComponent {
       'https://storage.googleapis.com/my-hero-academia-api/Toshinori_Yagi.jpg',
     ],
     items: [
-      ['occupation', 'Pro Hero, Teacher'],
-      ['quirk', 'Quirkless, One For All'],
+      ['Occupation', 'Pro Hero, Teacher'],
+      ['Quirk', 'Quirkless, One For All'],
     ],
   };
   public currentIndex = 0;

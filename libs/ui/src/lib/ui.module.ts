@@ -17,6 +17,7 @@ import { FilterComponent } from './filter/filter.component';
 import { GridComponent } from './grid/grid.component';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiIslandModule } from '@taiga-ui/kit';
+import { GridItemDirective } from './grid/grid-item.directive';
 
 @NgModule({
   imports: [
@@ -33,7 +34,12 @@ import { TuiIslandModule } from '@taiga-ui/kit';
     TuiButtonModule,
     TuiIslandModule,
   ],
-  declarations: [FilterComponent, CardComponent, GridComponent],
-  exports: [FilterComponent, CardComponent, GridComponent],
+  declarations: [
+    FilterComponent,
+    CardComponent,
+    GridComponent,
+    GridItemDirective,
+  ],
+  exports: [FilterComponent, CardComponent, GridComponent, GridItemDirective],
 })
 export class UiModule {}

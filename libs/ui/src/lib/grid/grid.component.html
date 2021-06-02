@@ -1,1 +1,13 @@
-<p>grid works!</p>
+<section class="grid">
+  <ng-container *ngFor="let item of items">
+    <ng-container
+      *ngIf="gridItemTemplate; else card"
+      [ngTemplateOutlet]="gridItemTemplate"
+      [ngTemplateOutletContext]="{ $implicit: item }"
+    >
+    </ng-container>
+    <ng-template #card>
+      <heroes-card></heroes-card>
+    </ng-template>
+  </ng-container>
+</section>
