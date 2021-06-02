@@ -3,11 +3,6 @@
     "HELLO": "Hello world",
     "SUBMIT": "Submit"
   },
-  "ROUTES": {
-    "HEROES": "Heroes",
-    "VILLAINS": "Villains",
-    "ABOUT": "About"
-  },
   "CHARACTERS": {
     "FILTER": "Filter search"
   },
