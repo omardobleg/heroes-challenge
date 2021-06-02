@@ -1,6 +1,7 @@
 {
   "APP": {
-    "HELLO": "Hello world"
+    "HELLO": "Hello world",
+    "SUBMIT": "Submit"
   },
   "ROUTES": {
     "HEROES": "Heroes",
@@ -9,5 +10,14 @@
   },
   "CHARACTERS": {
     "FILTER": "Filter search"
+  },
+  "UI": {
+    "NAME": "Name",
+    "ALIAS": "Alias",
+    "QUIRK": "Quirk",
+    "OCCUPATION": "Occupation",
+    "AFFILIATION": "Affiliation",
+    "TEACHER": "Teacher",
+    "STUDENT": "Student"
   }
 }
