@@ -6,5 +6,8 @@
     "HEROES": "Heroes",
     "VILLAINS": "Villains",
     "ABOUT": "About"
+  },
+  "CHARACTERS": {
+    "FILTER": "Filter search"
   }
 }
