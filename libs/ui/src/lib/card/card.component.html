@@ -1,1 +1,24 @@
-<p>card works!</p>
+<a tuiIsland size="l" href="" [textAlign]="textAlign" [hoverable]="hoverable">
+  <h3 class="tui-island__title">{{ cardConfig.title }}</h3>
+  <section class="slider">
+    <img class="img-container" [src]="image$ | async" />
+  </section>
+  <p class="tui-island__paragraph">
+    {{ cardConfig.body }}
+  </p>
+  <ul>
+    <li *ngFor="let item of cardConfig.items">
+      <b>{{ item[0] }}: </b> <span>{{ item[1] }}</span>
+    </li>
+  </ul>
+  <button
+    tuiButton
+    type="button"
+    class="tui-island__footer-button"
+    appearance="flat"
+    size="m"
+    (click)="delete()"
+  >
+    {{ 'UI.DELETE' | translate }}
+  </button>
+</a>

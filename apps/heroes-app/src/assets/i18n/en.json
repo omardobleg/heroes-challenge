@@ -18,6 +18,7 @@
     "OCCUPATION": "Occupation",
     "AFFILIATION": "Affiliation",
     "TEACHER": "Teacher",
-    "STUDENT": "Student"
+    "STUDENT": "Student",
+    "DELETE": "Delete"
   }
 }

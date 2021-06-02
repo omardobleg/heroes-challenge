@@ -2,12 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiAccordionModule, TuiDataListWrapperModule, TuiInputModule, TuiSelectModule } from '@taiga-ui/kit';
+import {
+  TuiDataListModule,
+  TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import {
+  TuiAccordionModule,
+  TuiDataListWrapperModule,
+  TuiInputModule,
+  TuiSelectModule,
+} from '@taiga-ui/kit';
 import { CardComponent } from './card/card.component';
 import { FilterComponent } from './filter/filter.component';
 import { GridComponent } from './grid/grid.component';
-import {TuiButtonModule} from '@taiga-ui/core';
+import { TuiButtonModule } from '@taiga-ui/core';
+import { TuiIslandModule } from '@taiga-ui/kit';
 
 @NgModule({
   imports: [
@@ -21,17 +30,10 @@ import {TuiButtonModule} from '@taiga-ui/core';
     TuiDataListModule,
     TuiDataListWrapperModule,
     TranslateModule,
-    TuiButtonModule
+    TuiButtonModule,
+    TuiIslandModule,
   ],
-  declarations: [
-    FilterComponent,
-    CardComponent,
-    GridComponent
-  ],
-  exports: [
-    FilterComponent,
-    CardComponent,
-    GridComponent
-  ],
+  declarations: [FilterComponent, CardComponent, GridComponent],
+  exports: [FilterComponent, CardComponent, GridComponent],
 })
-export class UiModule { }
+export class UiModule {}
