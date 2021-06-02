@@ -1,0 +1,53 @@
+<tui-accordion class="tui-container_fullwidth">
+    <tui-accordion-item [showArrow]="false" [open]="open">
+        {{title}}
+        <ng-template tuiAccordionItemContent>
+            <form id="formFilter" [formGroup]="formFilter" (ngSubmit)="onSubmit()">
+                <div class="tui-form__row tui-form__row_multi-fields">
+                    <div class="tui-form__multi-field">
+                        <tui-input tuiTextfieldSize="s" formControlName="name" tuiTextfieldExampleText="Midoriya">
+                            {{"UI.NAME" | translate}}
+                        </tui-input>
+                    </div>
+                    <div class="tui-form__multi-field">
+                        <tui-input tuiTextfieldSize="s" formControlName="alias" tuiTextfieldExampleText="Deku">
+                            {{"UI.ALIAS" | translate}}
+                        </tui-input>
+                    </div>
+                    <div class="tui-form__multi-field">
+                        <tui-input tuiTextfieldSize="s" formControlName="quirk" tuiTextfieldExampleText="One For All">
+                            {{"UI.QUIRK" | translate}}
+                        </tui-input>
+                    </div>
+                </div>
+
+                <div class="tui-form__row tui-form__row_multi-fields">
+
+                    <div class="tui-form__multi-field">
+                        <tui-select tuiTextfieldSize="s" formControlName="occupation">
+                            {{"UI.OCCUPATION" | translate}}
+                            <ng-template tuiDataList>
+                                <tui-data-list>
+                                    <button *ngFor="let item of items" tuiOption [value]="item.value">
+                                        {{item.label | translate}}
+                                    </button>
+                                </tui-data-list>
+                            </ng-template>
+                        </tui-select>
+                    </div>
+                    <div class="tui-form__multi-field">
+                        <tui-input tuiTextfieldSize="s" formControlName="affiliation" tuiTextfieldExampleText="U.A.">
+                            {{"UI.AFFILIATION" | translate}}
+                        </tui-input>
+                    </div>
+                    <div class="tui-form__multi-field">
+                        <button [ngClass]="'submit'" [size]="'s'"  tuiButton class="tui-form__button" size="l" type="submit">
+                            {{"APP.SUBMIT" | translate}}
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </ng-template>
+    </tui-accordion-item>
+</tui-accordion>
