@@ -1,14 +1,33 @@
-<a tuiIsland size="l" href="" [textAlign]="textAlign" [hoverable]="hoverable">
-  <h3 class="tui-island__title">{{ cardConfig.title }}</h3>
+<a
+  class="island-card"
+  tuiIsland
+  size="l"
+  href=""
+  [textAlign]="textAlign"
+  [hoverable]="hoverable"
+>
+  <h3 class="tui-island__title">
+    {{ cardConfig.title }}
+    <span class="tui-text_body-s">{{ cardConfig.subtitle }}</span>
+  </h3>
   <section class="slider">
-    <img class="img-container" [src]="image$ | async" />
+    <img
+      class="img-container"
+      [src]="(image$ | async) || ''"
+      [heroesImageFallback]="defaultImg"
+    />
   </section>
-  <p class="tui-island__paragraph">
-    {{ cardConfig.body }}
+  <p
+    class="tui-island__paragraph"
+    [tuiHintMode]="hintMode"
+    [tuiHint]="hint ? tooltip : null"
+  >
+    {{ cardConfig.body | ellipsis }}
   </p>
   <ul>
     <li *ngFor="let item of cardConfig.items">
-      <b>{{ item[0] }}: </b> <span>{{ item[1] }}</span>
+      <b>{{ item[0] | translate }}: </b> <span>{{ item[1] }}</span>
     </li>
   </ul>
 </a>
+<ng-template #tooltip>{{ cardConfig.body }}</ng-template>

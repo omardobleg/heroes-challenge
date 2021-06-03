@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FilterSearch } from '../data/filter.model';
 import { Occupation } from '../data/occupation.enum';
@@ -10,20 +16,24 @@ import { Occupation } from '../data/occupation.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent {
-
   @Input() title = '';
   @Input() open = false;
   @Output() newFiltering = new EventEmitter<FilterSearch>();
   public formFilter: FormGroup;
-  public readonly items = [{
-    label: 'UI.TEACHER',
-    value: Occupation.teacher
-  },
-  {
-    label: 'UI.STUDENT',
-    value: Occupation.student
-  }
-  ]
+  public readonly items = [
+    {
+      label: 'UI.TEACHER',
+      value: Occupation.teacher,
+    },
+    {
+      label: 'UI.STUDENT',
+      value: Occupation.student,
+    },
+    {
+      label: 'UI.PRO',
+      value: Occupation.pro,
+    },
+  ];
 
   get filteredValue() {
     const { value } = this.formFilter;
@@ -37,13 +47,15 @@ export class FilterComponent {
       quirk: '',
       occupation: null,
       affiliation: '',
-    })
+    });
   }
-
 
   onSubmit(): void {
     const formValue = this.filteredValue;
-    console.log("🚀 ~ file: filter.component.ts ~ line 45 ~ FilterComponent ~ onSubmit ~ formValue", formValue)
+    console.log(
+      '🚀 ~ file: filter.component.ts ~ line 45 ~ FilterComponent ~ onSubmit ~ formValue',
+      formValue
+    );
     if (Object.keys(formValue).length > 0) {
       this.newFiltering.emit(formValue);
     }

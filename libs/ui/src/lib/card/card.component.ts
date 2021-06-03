@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { TuiDestroyService } from '@taiga-ui/cdk';
+import { TuiHintMode } from '@taiga-ui/core';
 import { TuiTextAlign } from '@taiga-ui/kit';
 import { timer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -21,22 +22,16 @@ import { CardConfig } from '../data/card-config.model';
 export class CardComponent {
   @Input() hoverable = true;
   @Input() textAlign = TuiTextAlign.Center;
-  @Input()
-  cardConfig: CardConfig = {
-    link: '#',
-    title: 'Toshinori_Yagi',
-    body:
-      '"Toshinori Yagi (八 (や) 木 (ぎ) 俊 (とし) 典 (のり) , Yagi Toshinori?), more commonly known by his hero name, All Might (オールマイト, Ōru Maito?), is the tritagonist of My Hero Academia. All Might is the former No. 1 Pro Hero who bore the title of the wo',
-    images: [
-      'https://storage.googleapis.com/my-hero-academia-api/Toshinori_Yagi-1.jpg',
-      'https://storage.googleapis.com/my-hero-academia-api/Toshinori_Yagi-2.jpg',
-      'https://storage.googleapis.com/my-hero-academia-api/Toshinori_Yagi.jpg',
-    ],
-    items: [
-      ['Occupation', 'Pro Hero, Teacher'],
-      ['Quirk', 'Quirkless, One For All'],
-    ],
-  };
+  @Input() cardConfig!: CardConfig;
+  get hint() {
+    return this.cardConfig?.body?.length > 200;
+  }
+  get hintMode() {
+    return TuiHintMode.OnDark;
+  }
+  get defaultImg() {
+    return `/assets/images/default.jpg`;
+  }
   public currentIndex = 0;
   public image$ = timer(0, 4000).pipe(
     map(() => {
