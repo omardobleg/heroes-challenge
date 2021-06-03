@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 
 const routes: Routes = [
-  // {path:'',component:HomeComponent}
+   {path:'', redirectTo:'characters',pathMatch:'full'},
   {
     path: 'characters',
     loadChildren: () =>
