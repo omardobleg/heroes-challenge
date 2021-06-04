@@ -1,12 +1,12 @@
-import { Hero } from './../../data/Hero';
-import { TuiDestroyService } from '@taiga-ui/cdk';
 import { Component, Inject } from '@angular/core';
+import { TuiDestroyService } from '@taiga-ui/cdk';
 import { CardConfig } from 'libs/ui/src/lib/data/card-config.model';
 import { FilterSearch } from 'libs/ui/src/lib/data/filter.model';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
-import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { HeroesQuery } from '../../service/heroes.query';
 import { HeroesService } from '../../service/heroes.service';
+import { Hero } from './../../data/Hero';
 
 @Component({
   selector: 'heroes-characters',
