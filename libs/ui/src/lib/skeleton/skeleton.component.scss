@@ -1,0 +1,23 @@
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .image {
+    width: 200px;
+    height: 200px;
+  }
+  .title {
+    display: flex;
+    width: 80%;
+  }
+  .text {
+    width: 100%;
+  }
+  .short-text {
+    width: 50%;
+  }
+  p {
+    margin: 0.4rem;
+  }
+}

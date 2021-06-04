@@ -10,6 +10,7 @@ import { TuiHintMode } from '@taiga-ui/core';
 import { TuiTextAlign } from '@taiga-ui/kit';
 import { timer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
+import { Fade } from '../animations/animations';
 import { CardConfig } from '../data/card-config.model';
 
 @Component({
@@ -17,6 +18,7 @@ import { CardConfig } from '../data/card-config.model';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   providers: [TuiDestroyService],
+  animations: [Fade],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {

@@ -8,9 +8,13 @@
     </ng-container>
     <ng-template #card>
       <heroes-card
+        *ngIf="!loading; else skeleton"
         [cardConfig]="item"
         (deleteAction)="deleteEvent.emit($event)"
       ></heroes-card>
     </ng-template>
   </ng-container>
 </section>
+<ng-template #skeleton>
+  <heroes-skeleton></heroes-skeleton>
+</ng-template>
