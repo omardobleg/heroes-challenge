@@ -1,4 +1,14 @@
-<p>characters works!</p>
-<heroes-filter [title]="'CHARACTERS.FILTER' | translate"></heroes-filter>
-<!-- <heroes-card></heroes-card> -->
-<heroes-grid [items]="heroes"></heroes-grid>
+<div class="tui_row">
+  <heroes-filter
+    class="tui-col_12"
+    [title]="'CHARACTERS.FILTER' | translate"
+    (newFiltering)="filter($event)"
+  ></heroes-filter>
+</div>
+<div *ngIf="loading$ | async">Loading</div>
+<div class="tui_row">
+  <heroes-grid
+    (deleteEvent)="deleteItem($event)"
+    [items]="(heroes$ | async) || []"
+  ></heroes-grid>
+</div>

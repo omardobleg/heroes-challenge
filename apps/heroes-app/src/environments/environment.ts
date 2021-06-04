@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  restBase:'https://myheroacademiaapi.com/api/character'
 };
 
 /*

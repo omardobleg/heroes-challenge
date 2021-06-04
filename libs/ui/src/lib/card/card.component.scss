@@ -1,5 +1,17 @@
-.slider {
-  .img-container {
-    height: 200px;
+.island-card {
+  min-height: 400px;
+  .slider {
+    .img-container {
+      display: block;
+      max-width: 230px;
+      width: auto;
+      height: 200px;
+      margin: auto;
+    }
+  }
+  .close {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
   }
 }
