@@ -21,6 +21,7 @@ import { GridItemDirective } from './grid/grid-item.directive';
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { TuiHintModule } from '@taiga-ui/core';
 import { ImageFallbackDirective } from './directives/image-fallback.directive';
+import { SkeletonComponent } from './skeleton/skeleton.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -44,6 +45,7 @@ import { ImageFallbackDirective } from './directives/image-fallback.directive';
     GridItemDirective,
     EllipsisPipe,
     ImageFallbackDirective,
+    SkeletonComponent,
   ],
   exports: [
     FilterComponent,
@@ -52,6 +54,7 @@ import { ImageFallbackDirective } from './directives/image-fallback.directive';
     GridItemDirective,
     EllipsisPipe,
     ImageFallbackDirective,
+    SkeletonComponent,
   ],
 })
 export class UiModule {}

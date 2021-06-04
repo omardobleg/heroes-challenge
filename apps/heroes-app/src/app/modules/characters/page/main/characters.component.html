@@ -5,9 +5,9 @@
     (newFiltering)="filter($event)"
   ></heroes-filter>
 </div>
-<div *ngIf="loading$ | async">Loading</div>
 <div class="tui_row">
   <heroes-grid
+    [loading]="(loading$ | async) || false"
     (deleteEvent)="deleteItem($event)"
     [items]="(heroes$ | async) || []"
   ></heroes-grid>

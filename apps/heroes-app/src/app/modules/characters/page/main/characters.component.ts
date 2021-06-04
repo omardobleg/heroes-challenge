@@ -3,7 +3,7 @@ import { TuiDestroyService } from '@taiga-ui/cdk';
 import { CardConfig } from 'libs/ui/src/lib/data/card-config.model';
 import { FilterSearch } from 'libs/ui/src/lib/data/filter.model';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
+import { map, switchMap, takeUntil, startWith, delay } from 'rxjs/operators';
 import { HeroesQuery } from '../../service/heroes.query';
 import { HeroesService } from '../../service/heroes.service';
 import { Hero } from './../../data/Hero';
@@ -20,8 +20,7 @@ export class CharactersComponent {
     @Inject(HeroesQuery) private readonly heroesQuery: HeroesQuery,
     private readonly destroyService: TuiDestroyService
   ) {}
-  public heroes = ([1, 2, 3] as unknown[]) as CardConfig[];
-  public hero$ = this.heroService.getOne('Izuku_Midoriya');
+
   public loading$ = this.heroesQuery.selectLoading();
   private filter$ = new BehaviorSubject<FilterSearch>({});
   private paginator$ = new BehaviorSubject<number>(1);

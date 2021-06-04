@@ -18,6 +18,7 @@ import { GridItemDirective } from './grid-item.directive';
 })
 export class GridComponent {
   @Output() deleteEvent = new EventEmitter<string>();
+  @Input() loading = true;
   @Input() set items(items: CardConfig[]) {
     if (items) {
       this._items = items;
