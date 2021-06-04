@@ -8,8 +8,17 @@
 >
   <h3 class="tui-island__title">
     {{ cardConfig.title }}
-    <span class="tui-text_body-s">{{ cardConfig.subtitle }}</span>
+
+    <button
+      tuiIconButton
+      type="button"
+      class="close"
+      icon="tuiIconCloseLarge"
+      [size]="'s'"
+      (click)="$event.preventDefault(); delete()"
+    ></button>
   </h3>
+  <span class="tui-text_body-s">{{ cardConfig.subtitle }}</span>
   <section class="slider">
     <img
       class="img-container"

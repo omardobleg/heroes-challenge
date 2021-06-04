@@ -23,6 +23,7 @@ export class CardComponent {
   @Input() hoverable = true;
   @Input() textAlign = TuiTextAlign.Center;
   @Input() cardConfig!: CardConfig;
+  @Output() deleteAction = new EventEmitter<string>();
   get hint() {
     return this.cardConfig?.body?.length > 200;
   }
@@ -43,10 +44,13 @@ export class CardComponent {
     }),
     takeUntil(this.destroy)
   );
-  @Output() deleteAction = new EventEmitter<void>();
+
   constructor(private readonly destroy: TuiDestroyService) {}
 
   delete() {
-    this.deleteAction.emit();
+    this.deleteAction.emit(this.cardConfig.id);
+    console.log(
+      '🚀 ~ file: card.component.ts ~ line 52 ~ CardComponent ~ delete ~ deleteAction'
+    );
   }
 }

@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
+  EventEmitter,
   Input,
+  Output,
   TemplateRef,
 } from '@angular/core';
 import { CardConfig } from '../data/card-config.model';
@@ -15,6 +17,7 @@ import { GridItemDirective } from './grid-item.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GridComponent {
+  @Output() deleteEvent = new EventEmitter<string>();
   @Input() set items(items: CardConfig[]) {
     if (items) {
       this._items = items;

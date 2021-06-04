@@ -1,4 +1,5 @@
 export interface CardConfig {
+  id: string;
   link: string;
   title: string;
   subtitle: string;

@@ -52,12 +52,11 @@ export class FilterComponent {
 
   onSubmit(): void {
     const formValue = this.filteredValue;
-    console.log(
-      '🚀 ~ file: filter.component.ts ~ line 45 ~ FilterComponent ~ onSubmit ~ formValue',
-      formValue
-    );
-    if (Object.keys(formValue).length > 0) {
-      this.newFiltering.emit(formValue);
-    }
+    this.newFiltering.emit(formValue);
+  }
+
+  clear() {
+    this.formFilter.reset();
+    this.onSubmit();
   }
 }
