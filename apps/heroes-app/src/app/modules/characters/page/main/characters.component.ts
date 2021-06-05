@@ -1,11 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { TuiDestroyService } from '@taiga-ui/cdk';
+import { TuiDialogService } from '@taiga-ui/core';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { CardConfig } from 'libs/ui/src/lib/data/card-config.model';
 import { FilterSearch } from 'libs/ui/src/lib/data/filter.model';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
-import { map, switchMap, takeUntil, startWith, delay } from 'rxjs/operators';
+import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import { HeroesQuery } from '../../service/heroes.query';
 import { HeroesService } from '../../service/heroes.service';
+import { ModalDeleteComponent } from './../../components/modal-delete/modal-delete.component';
 import { Hero } from './../../data/Hero';
 
 @Component({
@@ -18,12 +21,17 @@ export class CharactersComponent {
   constructor(
     @Inject(HeroesService) private readonly heroService: HeroesService,
     @Inject(HeroesQuery) private readonly heroesQuery: HeroesQuery,
-    private readonly destroyService: TuiDestroyService
+    private readonly destroyService: TuiDestroyService,
+    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService
   ) {}
-
+  private readonly dialog = this.dialogService.open<number>(
+    new PolymorpheusComponent(ModalDeleteComponent)
+  );
   public loading$ = this.heroesQuery.selectLoading();
   private filter$ = new BehaviorSubject<FilterSearch>({});
   private paginator$ = new BehaviorSubject<number>(1);
+  public paginationStatus = this.heroesQuery.selectPagination$;
+
   public heroes$ = combineLatest([this.filter$, this.paginator$]).pipe(
     switchMap(([filter, page]) => this.heroService.getAll(page, filter)),
     switchMap(() => this.heroesQuery.selectAll()),
@@ -32,12 +40,17 @@ export class CharactersComponent {
 
   filter(filter: FilterSearch) {
     this.filter$.next(filter);
+    this.paginator$.next(1);
+  }
+  public goToPage(page: number) {
+    this.paginator$.next(page + 1);
   }
 
   public deleteItem(id: string) {
-    this.heroesQuery
-      .selectEntity(id)
+    this.dialog
       .pipe(
+        filter((val) => !!val),
+        switchMap(() => this.heroesQuery.selectEntity(id)),
         switchMap((hero) =>
           hero ? this.heroService.deleteOne(hero) : of(null)
         ),

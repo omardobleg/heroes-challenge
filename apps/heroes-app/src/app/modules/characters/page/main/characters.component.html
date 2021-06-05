@@ -6,9 +6,27 @@
   ></heroes-filter>
 </div>
 <div class="tui_row">
+  <tui-pagination
+    class="tui-space_vertical-5"
+    *ngIf="paginationStatus | async as pagination"
+    [length]="pagination.pages"
+    [index]="pagination.currentPage - 1"
+    (indexChange)="goToPage($event)"
+  ></tui-pagination>
+</div>
+<div class="tui_row">
   <heroes-grid
     [loading]="(loading$ | async) || false"
     (deleteEvent)="deleteItem($event)"
     [items]="(heroes$ | async) || []"
   ></heroes-grid>
+</div>
+<div class="tui_row">
+  <tui-pagination
+    class="tui-space_vertical-5"
+    *ngIf="paginationStatus | async as pagination"
+    [length]="pagination.pages"
+    [index]="pagination.currentPage - 1"
+    (indexChange)="goToPage($event)"
+  ></tui-pagination>
 </div>
