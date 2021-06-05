@@ -1,0 +1,17 @@
+<div>
+  <h3 class="tui-text_h3">{{ 'CHARACTERS.DELETE' | translate }}</h3>
+  <div>
+    <button tuiButton type="button" size="s" (click)="confirm(true)">
+      {{ 'APP.YES' | translate }}
+    </button>
+    <button
+      tuiButton
+      type="button"
+      size="s"
+      (click)="confirm(false)"
+      class="tui-space_horizontal-4"
+    >
+      {{ 'APP.NO' | translate }}
+    </button>
+  </div>
+</div>

@@ -2,7 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 
 import { combineLatest } from 'rxjs';
-import { finalize, map, switchMap, take, tap } from 'rxjs/operators';
+import {
+  finalize,
+  map,
+  switchMap,
+  take,
+  tap,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { Hero } from '../data/Hero';
 import { Page } from '../data/Page';
@@ -38,6 +45,8 @@ export class HeroesService {
       this.http.get<Page<Hero>>(this.restBase, { params }),
       this.pouchDbService.find(FilterSearch),
     ]).pipe(
+      //store pagination info
+      tap(([rest, _]) => this.store.update({ pageInfo: rest.info })),
       // Get data form Rest and local db
       map(([restData, dbData]) => [...dbData.docs, ...restData.result]),
       // Remove duplicate items, get db only
