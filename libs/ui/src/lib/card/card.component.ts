@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  OnInit,
 } from '@angular/core';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiHintMode } from '@taiga-ui/core';
@@ -35,14 +36,14 @@ export class CardComponent {
   get defaultImg() {
     return `/assets/images/default.jpg`;
   }
-  public currentIndex = 0;
+  public currentIndex = -1;
   public image$ = timer(0, 4000).pipe(
     map(() => {
       this.currentIndex =
         this.currentIndex >= this.cardConfig.images.length - 1
           ? 0
           : this.currentIndex + 1;
-      return this.cardConfig.images[this.currentIndex];
+      return this.currentIndex;
     }),
     takeUntil(this.destroy)
   );
