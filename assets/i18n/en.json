@@ -1,0 +1,32 @@
+{
+  "APP": {
+    "HELLO": "Hello world",
+    "SUBMIT": "Submit",
+    "CLEAR": "Clear",
+    "YES": "Yes",
+    "NO": "No"
+  },
+  "ROUTES": {
+    "HEROES": "Heroes",
+    "VILLAINS": "Villains",
+    "ABOUT": "About"
+  },
+  "CHARACTERS": {
+    "FILTER": "Filter search",
+    "OCCUPATION": "Occupation",
+    "QUIRK": "Quirk",
+    "AFFILIATION": "Affiliation",
+    "DELETE": "Do you want to delete this item?"
+  },
+  "UI": {
+    "NAME": "Name",
+    "ALIAS": "Alias",
+    "QUIRK": "Quirk",
+    "OCCUPATION": "Occupation",
+    "AFFILIATION": "Affiliation",
+    "TEACHER": "Teacher",
+    "STUDENT": "Student",
+    "PRO": "Pro Hero",
+    "DELETE": "Delete"
+  }
+}
