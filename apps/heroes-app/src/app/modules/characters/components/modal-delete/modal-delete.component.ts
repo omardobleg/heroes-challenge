@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { TuiDialogContext } from '@taiga-ui/core';
-import { SimpleModalComponent } from 'ngx-simple-modal';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 
 @Component({

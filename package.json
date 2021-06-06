@@ -25,7 +25,8 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "deploy": "ng deploy heroes-app --base-href=heroes-challenge --cname=false"
   },
   "private": true,
   "dependencies": {
@@ -77,6 +78,7 @@
     "@types/pouchdb": "^6.4.0",
     "@typescript-eslint/eslint-plugin": "4.19.0",
     "@typescript-eslint/parser": "4.19.0",
+    "angular-cli-ghpages": "^1.0.0-rc.2",
     "cypress": "^7.3.0",
     "dotenv": "8.2.0",
     "dotenv-webpack": "7.0.2",
