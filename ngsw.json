@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1623017418530,
+  "timestamp": 1623017736637,
   "index": "heroes-challenge/index.html",
   "assetGroups": [
     {
@@ -16,7 +16,7 @@
         "heroes-challenge/972.ee23df0e7383954f411a.js",
         "heroes-challenge/favicon.ico",
         "heroes-challenge/index.html",
-        "heroes-challenge/main.1b39e951abe54cbb657e.js",
+        "heroes-challenge/main.98c9d070781b1ddd7e3f.js",
         "heroes-challenge/manifest.webmanifest",
         "heroes-challenge/polyfills.df3b1c366c930be6da75.js",
         "heroes-challenge/runtime.0c237463828110405211.js",
@@ -882,8 +882,8 @@
     "heroes-challenge/assets/taiga-ui/icons/tuiIconWifiOffLarge.svg": "e44f0f649ba48cd7e7e76d4f6f16dde045ab9d17",
     "heroes-challenge/assets/taiga-ui/icons/tuiIconWifiOnLarge.svg": "015efe74d72322d0891809cc4151d0159dad5c49",
     "heroes-challenge/favicon.ico": "4e23d0f9b6ddaf3c9ddef90dbaed2342941297b5",
-    "heroes-challenge/index.html": "ab755b947261d8fff4d293bc8588963d87db004b",
-    "heroes-challenge/main.1b39e951abe54cbb657e.js": "14321e53e35e4e915fb8a942cd91e3c3a402e6f7",
+    "heroes-challenge/index.html": "f35cd9cc3f5c316b8abb50127505dc81e6b0d8eb",
+    "heroes-challenge/main.98c9d070781b1ddd7e3f.js": "99599cf16021d3b9001e934c19faa64b253008fd",
     "heroes-challenge/manifest.webmanifest": "9d5ebde9a5ffef131cc9cb4f2173f75d35eccce6",
     "heroes-challenge/polyfills.df3b1c366c930be6da75.js": "00198b684278176366bd1daf072ac92c35040923",
     "heroes-challenge/runtime.0c237463828110405211.js": "53765e0920ec14f3e8800b6aefae4cc8fe5c5dc1",
