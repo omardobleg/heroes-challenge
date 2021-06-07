@@ -26,7 +26,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "deploy": "ng deploy heroes-app --base-href=heroes-challenge --cname=false"
+    "deploy": "ng deploy heroes-app --base-href=./ --cname=false"
   },
   "private": true,
   "dependencies": {
