@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TuiDialogModule, TuiNotificationsModule, TuiRootModule } from '@taiga-ui/core';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,5 +30,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
   exports: [TuiRootModule, TranslateModule],
+  providers:[{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi:true
+  }
+
+  ]
 })
 export class CoreModule {}
