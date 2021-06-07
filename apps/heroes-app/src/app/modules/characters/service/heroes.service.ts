@@ -1,20 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-
+import { Hero, Page } from '@heroes/data';
 import { combineLatest } from 'rxjs';
 import {
+  delay,
   finalize,
   map,
   switchMap,
   take,
-  tap,
-  withLatestFrom,
+  tap
 } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
-import { Hero } from '../data/Hero';
-import { Page } from '../data/Page';
 import { HeroesStore } from './heroes.store';
 import { PouchDBService } from './pouchDb/pouch-db.service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -63,9 +62,12 @@ export class HeroesService {
 
   getOne(character: string) {
     this.store.setLoading(true);
-    return this.http
-      .get<Hero>(`${this.restBase}/${character}`)
-      .pipe(finalize(() => this.store.setLoading(false)));
+    return combineLatest([ this.pouchDbService.getOne(character) ,
+      this.http.get<Hero>(`${this.restBase}/${character}`)])
+      .pipe(
+        map(([dbOne,restOne])=>({...restOne,...dbOne})),
+        finalize(() => this.store.setLoading(false))
+        );
   }
 
   /**
@@ -77,7 +79,9 @@ export class HeroesService {
     this.store.setLoading(true);
     return this.pouchDbService
       .upsertOne(hero)
-      .pipe(finalize(() => this.store.setLoading(false)));
+      .pipe(
+        delay(500),
+        finalize(() => this.store.setLoading(false)));
   }
   /**
    *  Mark a hero as deleted in local db, because API is read only

@@ -2,14 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { CardConfig } from 'libs/ui/src/lib/data/card-config.model';
-import { FilterSearch } from 'libs/ui/src/lib/data/filter.model';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import { HeroesQuery } from '../../service/heroes.query';
 import { HeroesService } from '../../service/heroes.service';
 import { ModalDeleteComponent } from './../../components/modal-delete/modal-delete.component';
-import { Hero } from './../../data/Hero';
+import { Hero, CardConfig, FilterSearch } from '@heroes/data'
 
 @Component({
   selector: 'heroes-characters',
@@ -23,7 +21,7 @@ export class CharactersComponent {
     @Inject(HeroesQuery) private readonly heroesQuery: HeroesQuery,
     private readonly destroyService: TuiDestroyService,
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService
-  ) {}
+  ) { }
   private readonly dialog = this.dialogService.open<number>(
     new PolymorpheusComponent(ModalDeleteComponent)
   );
@@ -70,7 +68,7 @@ export class CharactersComponent {
   }: Hero): CardConfig {
     return {
       id,
-      link: `/${id}`,
+      link: `./${id}`,
       title: name,
       subtitle: alias,
       body: description,

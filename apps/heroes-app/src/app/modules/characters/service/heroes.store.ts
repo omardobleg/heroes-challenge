@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { Hero } from './../data/Hero';
+import { Hero } from '@heroes/data'
 
 export interface HeroesState extends EntityState<Hero, string> {
   pageInfo: {
