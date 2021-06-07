@@ -6,8 +6,8 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FilterSearch } from '../data/filter.model';
-import { Occupation } from '../data/occupation.enum';
+import { FilterSearch,Occupation } from '@heroes/data'
+
 
 @Component({
   selector: 'heroes-filter',

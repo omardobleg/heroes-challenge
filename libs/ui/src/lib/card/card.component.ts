@@ -3,16 +3,15 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output,
-  OnInit,
+  Output
 } from '@angular/core';
+import { CardConfig } from '@heroes/data';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiHintMode } from '@taiga-ui/core';
 import { TuiTextAlign } from '@taiga-ui/kit';
 import { timer } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { Fade } from '../animations/animations';
-import { CardConfig } from '../data/card-config.model';
 
 @Component({
   selector: 'heroes-card',
