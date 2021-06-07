@@ -7,7 +7,7 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { CardConfig } from '../data/card-config.model';
+import { CardConfig } from '@heroes/data'
 import { GridItemDirective } from './grid-item.directive';
 
 @Component({

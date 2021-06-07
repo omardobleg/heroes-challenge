@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@heroes/ui": ["libs/ui/src/index.ts"]
+      "@heroes/ui": ["libs/ui/src/index.ts"],
+      "@heroes/data": ["libs/data/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

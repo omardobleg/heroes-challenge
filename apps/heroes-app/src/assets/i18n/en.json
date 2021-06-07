@@ -27,6 +27,11 @@
     "TEACHER": "Teacher",
     "STUDENT": "Student",
     "PRO": "Pro Hero",
-    "DELETE": "Delete"
+    "DELETE": "Delete",
+    "IMAGES": "Images",
+    "IMAGE":"Url of the image",
+    "DESCRIPTION": "Description",
+    "CREATE": "Create a new hero",
+    "EDIT": "Edit a hero"
   }
 }

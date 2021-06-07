@@ -1,0 +1,7 @@
+@import '~@taiga-ui/core/styles/taiga-ui-local';
+.float-button{
+    position: fixed;
+    bottom: 1rem;
+    right: calc( clamp(50px, 100vw - 1104px, 1000px ) / 2);
+    @include shadow(3);
+}

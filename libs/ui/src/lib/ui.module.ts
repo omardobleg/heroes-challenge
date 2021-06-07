@@ -4,13 +4,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   TuiDataListModule,
+  TuiGroupModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import {
   TuiAccordionModule,
   TuiDataListWrapperModule,
+  TuiFieldErrorModule,
   TuiInputModule,
   TuiSelectModule,
+  TuiTextAreaModule,
 } from '@taiga-ui/kit';
 import { CardComponent } from './card/card.component';
 import { FilterComponent } from './filter/filter.component';
@@ -22,10 +25,13 @@ import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { TuiHintModule } from '@taiga-ui/core';
 import { ImageFallbackDirective } from './directives/image-fallback.directive';
 import { SkeletonComponent } from './skeleton/skeleton.component';
+import { RouterModule } from '@angular/router';
+import { EditFormComponent } from './edit-form/edit-form.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     TuiAccordionModule,
     FormsModule,
     ReactiveFormsModule,
@@ -38,6 +44,9 @@ import { SkeletonComponent } from './skeleton/skeleton.component';
     TuiButtonModule,
     TuiIslandModule,
     TuiHintModule,
+    TuiTextAreaModule,
+    TuiFieldErrorModule,
+    TuiGroupModule
   ],
   declarations: [
     FilterComponent,
@@ -47,6 +56,7 @@ import { SkeletonComponent } from './skeleton/skeleton.component';
     EllipsisPipe,
     ImageFallbackDirective,
     SkeletonComponent,
+    EditFormComponent,
   ],
   exports: [
     FilterComponent,
@@ -56,6 +66,7 @@ import { SkeletonComponent } from './skeleton/skeleton.component';
     EllipsisPipe,
     ImageFallbackDirective,
     SkeletonComponent,
+    EditFormComponent
   ],
 })
 export class UiModule {}

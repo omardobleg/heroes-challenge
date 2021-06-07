@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TuiDialogModule, TuiRootModule } from '@taiga-ui/core';
+import { TuiDialogModule, TuiNotificationsModule, TuiRootModule } from '@taiga-ui/core';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -16,6 +16,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommonModule,
     TuiRootModule,
     TuiDialogModule,
+    TuiNotificationsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({

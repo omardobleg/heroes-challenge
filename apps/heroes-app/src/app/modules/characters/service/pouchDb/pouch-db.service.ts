@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
-import { from, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { Hero } from '../../data/Hero';
-import { FilterSearch } from './../../../../../../../../libs/ui/src/lib/data/filter.model';
+import { Hero, FilterSearch } from '@heroes/data'
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +33,10 @@ export class PouchDBService {
     );
   }
 
+  getOne(id: string) {
+    return this.pouchDB.get(id);
+  }
+
   upsertOne(hero: Hero) {
     return this.safeQuery(hero).pipe(
       switchMap((val) => from(this.pouchDB.put(val)))
@@ -46,16 +49,15 @@ export class PouchDBService {
     );
   }
 
-  private safeQuery(hero: Hero) {
+  private safeQuery(hero: Hero): Observable<PouchDB.Core.PutDocument<Hero>> {
     return from(this.pouchDB.get(hero.id)).pipe(
       catchError(() => of(null)),
       map((prevDoc) => {
-        const put: PouchDB.Core.PutDocument<Hero> = {
+        return   {
           ...(prevDoc && { _rev: prevDoc._rev }),
           ...hero,
-          _id: hero.id,
+          _id: hero.id || hero.name,
         };
-        return put;
       })
     );
   }
