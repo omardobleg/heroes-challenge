@@ -1,28 +1,35 @@
 import { InjectionToken, Provider } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { Hero } from '@heroes/data';
 import { Observable, of } from "rxjs";
 import { switchMap } from "rxjs/operators";
+import { HeroesQuery } from "../../service/heroes.query";
+import { HeroesService } from "../../service/heroes.service";
 
 // token to access a stream with the information you need
-export const HERO_INFO = new InjectionToken<Observable<string>>(
+export const HERO_INFO = new InjectionToken<Observable<Hero>>(
     'A stream with current Hero to edit'
 );
 
 export const HERO_PROVIDERS: Provider[] = [
     {
         provide: HERO_INFO,
-        deps: [ActivatedRoute],
+        deps: [ActivatedRoute, HeroesQuery, HeroesService],
         useFactory: heroFactory,
     },
 ];
 
 export function heroFactory(
     { params }: ActivatedRoute,
-    // organizationService: OrganizationService
-): Observable<string> {
+    heroQuery: HeroesQuery,
+    heroService: HeroesService
+): Observable<Hero | undefined> {
     return params.pipe(
-        switchMap(({id}) => {
-            return of(id);
+        switchMap(({ id }) => {
+            return heroQuery.selectEntity(id)
+                .pipe(
+                    switchMap(val => !val ? heroService.getOne(id) : of(val))
+                );
         })
     );
 }

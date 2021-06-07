@@ -1,0 +1,82 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="tui-form">
+  <div class="tui-form__header">
+    {{title | translate}}
+  </div>
+  <input type="hidden" formControlName="id">
+  <div class="tui-form__row ">
+    <tui-input tuiTextfieldSize="m" formControlName="name" tuiTextfieldExampleText="Midoriya">
+      {{ 'UI.NAME' | translate }}
+    </tui-input>
+    <tui-field-error formControlName="name"></tui-field-error>
+  </div>
+  <div class="tui-form__row ">
+    <tui-input tuiTextfieldSize="m" formControlName="alias" tuiTextfieldExampleText="Deku">
+      {{ 'UI.ALIAS' | translate }}
+    </tui-input>
+    <tui-field-error formControlName="alias"></tui-field-error>
+  </div>
+
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__multi-field">
+      <tui-input tuiTextfieldSize="m" formControlName="quirk" tuiTextfieldExampleText="One For All">
+        {{ 'UI.QUIRK' | translate }}
+      </tui-input>
+      <tui-field-error formControlName="quirk"></tui-field-error>
+    </div>
+    <div class="tui-form__multi-field">
+      <tui-select tuiTextfieldSize="m" formControlName="occupation">
+        {{ 'UI.OCCUPATION' | translate }}
+        <ng-template tuiDataList>
+          <tui-data-list>
+            <button *ngFor="let item of occupations" tuiOption [value]="item.value">
+              {{ item.label | translate }}
+            </button>
+          </tui-data-list>
+        </ng-template>
+      </tui-select>
+      <tui-field-error formControlName="occupation"></tui-field-error>
+    </div>
+    <div class="tui-form__multi-field">
+      <tui-input tuiTextfieldSize="m" formControlName="affiliation" tuiTextfieldExampleText="U.A.">
+        {{ 'UI.AFFILIATION' | translate }}
+      </tui-input>
+      <tui-field-error formControlName="affiliation"></tui-field-error>
+    </div>
+
+  </div>
+  <div class="tui-form__row">
+    <tui-text-area formControlName="description" [expandable]="true">
+      {{ 'UI.DESCRIPTION' | translate }}
+    </tui-text-area>
+  </div>
+  <div class="tui-form__header">
+    {{ 'UI.IMAGES' | translate}}
+    <button tuiIconButton [size]="'xs'" [shape]="shape"  type="button" icon="tuiIconPlusLarge" (click)="addImage()">
+    </button>
+  </div>
+  <div class="" formArrayName="images">
+    <ng-container *ngFor="let image of imagesArray; let i = index">
+      <div tuiGroup class="tui-form__row">
+        <div class="" >
+          <tui-input tuiTextfieldSize="s" [formControlName]="i" >
+            {{ 'UI.IMAGE' | translate }}
+          </tui-input>
+        </div>
+          <button class="tui-group__auto-width-item"  [size]="'s'" tuiIconButton type="button" icon="tuiIconMinusLarge"
+            (click)="deleteImage(i)">
+
+          </button>       
+      </div>
+      <tui-field-error formControlName="{{i}}"></tui-field-error>
+    </ng-container>
+  </div>
+  <div class="tui-form__buttons tui-form__buttons_align_end">
+    <button [size]="'m'" tuiButton class="tui-form__button" type="submit" [showLoader]="loading">
+      {{ 'APP.SUBMIT' | translate }}
+    </button>
+    <button [size]="'m'" (click)="clear()" tuiButton class="tui-form__button tui-space_horizontal-2" type="button"
+      appearance="secondary">
+      {{ 'APP.CLEAR' | translate }}
+    </button>
+  </div>
+</form>
