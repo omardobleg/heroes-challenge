@@ -1,5 +1,7 @@
+import { TuiButtonModule } from '@taiga-ui/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { ModalDeleteComponent } from './modal-delete.component';
 
 describe('ModalDeleteComponent', () => {
@@ -8,9 +10,15 @@ describe('ModalDeleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalDeleteComponent ]
-    })
-    .compileComponents();
+      imports: [TranslateModule.forRoot(), TuiButtonModule],
+      declarations: [ModalDeleteComponent],
+      providers: [
+        {
+          provide: POLYMORPHEUS_CONTEXT,
+          useValue: { completeWith: {} },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

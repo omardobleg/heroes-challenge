@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SkeletonComponent } from './skeleton.component';
 
 describe('SkeletonComponent', () => {
@@ -8,9 +8,9 @@ describe('SkeletonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SkeletonComponent ]
-    })
-    .compileComponents();
+      imports: [NoopAnimationsModule],
+      declarations: [SkeletonComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

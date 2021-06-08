@@ -1,1 +1,5 @@
-<heroes-edit-form [hero]="hero$| async" (heroStatus)="update($event)" [loading]="(loading$ |async) || false"></heroes-edit-form>
+<heroes-edit-form
+  [hero]="hero$ | async"
+  (heroStatus)="update($event)"
+  [loading]="(loading$ | async) || false"
+></heroes-edit-form>

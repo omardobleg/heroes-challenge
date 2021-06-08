@@ -3,7 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output
+  Output,
 } from '@angular/core';
 import { CardConfig } from '@heroes/data';
 import { TuiDestroyService } from '@taiga-ui/cdk';
@@ -23,14 +23,14 @@ import { Fade } from '../animations/animations';
 })
 export class CardComponent {
   @Input() hoverable = true;
-  @Input() textAlign = TuiTextAlign.Center;
+  @Input() textAlign = 'center' as TuiTextAlign;
   @Input() cardConfig!: CardConfig;
   @Output() deleteAction = new EventEmitter<string>();
   get hint() {
     return this.cardConfig?.body?.length > 200;
   }
   get hintMode() {
-    return TuiHintMode.OnDark;
+    return 'onDark' as TuiHintMode;
   }
   get defaultImg() {
     return `/assets/images/default.jpg`;
@@ -51,8 +51,5 @@ export class CardComponent {
 
   delete() {
     this.deleteAction.emit(this.cardConfig.id);
-    console.log(
-      '🚀 ~ file: card.component.ts ~ line 52 ~ CardComponent ~ delete ~ deleteAction'
-    );
   }
 }

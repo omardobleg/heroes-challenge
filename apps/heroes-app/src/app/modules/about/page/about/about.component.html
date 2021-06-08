@@ -1,1 +1,34 @@
-<p>about works!</p>
+<h1>Description of the project</h1>
+<a href="https://github.com/omardobleg/heroes-challenge" target="_blank"
+  >Github</a
+>
+<p>
+  The project is made of 3 pages, heroes, villains and about. Heroes has the
+  grid and the crud. From this page we can see and filter heroes and delete. We
+  can navigate to "create" page to edit or create a hero. It's also a PWA so it
+  can be installed. It has a bit of everything (directives, pipes, animations,
+  providers, store, reactive streams, rest services and local storage)
+</p>
+<p>
+  Heroes are fetched from
+  <a href="https://myheroacademiaapi.com/" target="_blank">this api</a> but is
+  read only so to edit create and delete we combine this info with a local
+  database made with PouchDB. Heroes created,edited or deleted are stored in
+  this database and merged with the data from the api. This may cause some
+  mismatch between the pagination number from the api and the final number of
+  elements.
+</p>
+<h3>Packages used</h3>
+<ul>
+  <li>Nx Workspace</li>
+  <li>Taiga ui</li>
+  <li>Akita</li>
+  <li>PouchDb</li>
+  <li>Ngx-translate</li>
+</ul>
+<h3>Testing</h3>
+<ul>
+  <li>E2E: Cypres</li>
+  <li>Unit: Jest</li>
+  <li>Components:Storybook</li>
+</ul>
