@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-
 import { PouchDBService } from './pouch-db.service';
 
-describe('PouchDBService', () => {
+xdescribe('PouchDBService', () => {
   let service: PouchDBService;
 
   beforeEach(() => {

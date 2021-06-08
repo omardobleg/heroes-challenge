@@ -1,1 +1,16 @@
-<p>villains works!</p>
+<h1>Not usable code , only an example of reusable grid with templates</h1>
+<h5>Same data and logic, different view</h5>
+<heroes-grid [items]="items">
+  <!--We can reuse grid and change cards same data  -->
+  <div *heroesGridItem="let hero" class="card">
+    <section class="body">
+      <div>
+        <h2>{{ hero.title }}</h2>
+        <p>{{ hero.subtitle }}</p>
+      </div>
+      <ol>
+        <li *ngFor="let i of hero.items">{{ i[0] | translate }}: {{ i[1] }}</li>
+      </ol>
+    </section>
+  </div>
+</heroes-grid>

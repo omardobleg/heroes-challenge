@@ -3,7 +3,7 @@ import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
 import { from, Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { Hero, FilterSearch } from '@heroes/data'
+import { Hero, FilterSearch } from '@heroes/data';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { Hero, FilterSearch } from '@heroes/data'
 export class PouchDBService {
   private pouchDB: PouchDB.Database<Hero>;
   constructor() {
-    PouchDB.plugin(PouchDBFind);
+    PouchDB && PouchDB.plugin && PouchDB.plugin(PouchDBFind);
     this.pouchDB = new PouchDB('heroes');
   }
 
@@ -53,7 +53,7 @@ export class PouchDBService {
     return from(this.pouchDB.get(hero.id)).pipe(
       catchError(() => of(null)),
       map((prevDoc) => {
-        return   {
+        return {
           ...(prevDoc && { _rev: prevDoc._rev }),
           ...hero,
           _id: hero.id || hero.name,

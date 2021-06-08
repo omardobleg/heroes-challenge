@@ -1,6 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Hero, Occupation } from '@heroes/data'
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Hero, Occupation } from '@heroes/data';
 import { TuiButtonShape } from '@taiga-ui/core';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
@@ -40,7 +53,7 @@ export class EditFormComponent {
     if (hero) {
       this._hero = hero;
       this.form.patchValue(hero);
-      hero.images.forEach(val => this.addImage(val))
+      hero.images.forEach((val) => this.addImage(val));
     }
   }
   get hero() {
@@ -52,7 +65,7 @@ export class EditFormComponent {
     return TuiButtonShape.Rounded;
   }
   get title() {
-    return this.hero ? 'UI.EDIT' : "UI.CREATE";
+    return this.hero ? 'UI.EDIT' : 'UI.CREATE';
   }
   get images() {
     return this.form.get('images') as FormArray;
@@ -74,7 +87,7 @@ export class EditFormComponent {
   }
 
   deleteImage(index: number) {
-    this.images.removeAt(index)
+    this.images.removeAt(index);
   }
 
   addImage(url = '') {
@@ -84,7 +97,7 @@ export class EditFormComponent {
   onSubmit() {
     const { valid, value } = this.form;
     if (valid) {
-      this.heroStatus.emit(value)
+      this.heroStatus.emit(value);
     }
     this.form.markAllAsTouched();
   }

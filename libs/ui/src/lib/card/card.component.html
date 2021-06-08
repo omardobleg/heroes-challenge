@@ -8,7 +8,7 @@
   @fade
 >
   <h3 class="tui-island__title">
-    {{ cardConfig.title }}
+    {{ cardConfig?.title }}
 
     <button
       tuiIconButton
@@ -16,10 +16,10 @@
       class="close"
       icon="tuiIconCloseLarge"
       [size]="'s'"
-      (click)="$event.preventDefault(); delete()"
+      (click)="$event.preventDefault(); $event.stopPropagation(); delete()"
     ></button>
   </h3>
-  <span class="tui-text_body-s">{{ cardConfig.subtitle }}</span>
+  <span class="tui-text_body-s">{{ cardConfig?.subtitle }}</span>
   <section class="slider">
     <img
       *ngFor="let image of cardConfig?.images; let i = index"
@@ -34,13 +34,13 @@
     [tuiHintMode]="hintMode"
     [tuiHint]="hint ? tooltip : null"
   >
-    {{ cardConfig.body | ellipsis }}
+    {{ cardConfig?.body | ellipsis }}
   </p>
   <ul>
-    <li *ngFor="let item of cardConfig.items">
+    <li *ngFor="let item of cardConfig?.items">
       <b>{{ item[0] | translate }}: </b> <span>{{ item[1] }}</span>
     </li>
   </ul>
 </a>
-<ng-template #tooltip>{{ cardConfig.body }}</ng-template>
+<ng-template #tooltip>{{ cardConfig?.body }}</ng-template>
 <ng-container *ngIf="image$ | async" class="hide"></ng-container>

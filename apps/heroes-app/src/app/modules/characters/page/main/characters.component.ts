@@ -1,13 +1,13 @@
 import { Component, Inject } from '@angular/core';
+import { CardConfig, FilterSearch, Hero } from '@heroes/data';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
-import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { distinct, distinctUntilChanged, filter, map, switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { HeroesQuery } from '../../service/heroes.query';
 import { HeroesService } from '../../service/heroes.service';
 import { ModalDeleteComponent } from './../../components/modal-delete/modal-delete.component';
-import { Hero, CardConfig, FilterSearch } from '@heroes/data'
 
 @Component({
   selector: 'heroes-characters',
@@ -30,11 +30,12 @@ export class CharactersComponent {
   private paginator$ = new BehaviorSubject<number>(1);
   public paginationStatus = this.heroesQuery.selectPagination$;
 
-  public heroes$ = combineLatest([this.filter$, this.paginator$]).pipe(
-    switchMap(([filter, page]) => this.heroService.getAll(page, filter)),
+  public heroes$ = this.paginator$.pipe(
+    withLatestFrom(this.filter$),
+    switchMap(([page, filter]) => this.heroService.getAll(page, filter)),
     switchMap(() => this.heroesQuery.selectAll()),
     map((heroes) => heroes.map((hero) => this.mapHeroToCard(hero)))
-  );
+  )
 
   filter(filter: FilterSearch) {
     this.filter$.next(filter);
@@ -56,6 +57,7 @@ export class CharactersComponent {
       )
       .subscribe();
   }
+  
   private mapHeroToCard({
     id,
     name,

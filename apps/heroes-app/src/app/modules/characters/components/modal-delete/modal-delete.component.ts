@@ -5,7 +5,7 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 @Component({
   selector: 'heroes-modal-delete',
   templateUrl: './modal-delete.component.html',
-  styleUrls: ['./modal-delete.component.less'],
+  styleUrls: ['./modal-delete.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalDeleteComponent {

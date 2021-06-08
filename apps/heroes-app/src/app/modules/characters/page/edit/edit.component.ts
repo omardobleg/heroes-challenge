@@ -25,7 +25,6 @@ export class EditComponent {
 
   update(hero: Hero) {
     this.heroService.upsertOne(hero).subscribe(v => {
-      console.log("🚀 ~ file: edit.component.ts ~ line 24 ~ EditComponent ~ update ~ v", v)
       this.notificationService.show('Hero Created',{status:TuiNotification.Success}).subscribe()
     }
     );

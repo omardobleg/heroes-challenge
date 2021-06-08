@@ -2,18 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Hero, Page } from '@heroes/data';
 import { combineLatest } from 'rxjs';
-import {
-  delay,
-  finalize,
-  map,
-  switchMap,
-  take,
-  tap
-} from 'rxjs/operators';
+import { delay, finalize, map, switchMap, take, tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { HeroesStore } from './heroes.store';
 import { PouchDBService } from './pouchDb/pouch-db.service';
-
 
 @Injectable({
   providedIn: 'root',
@@ -62,12 +54,13 @@ export class HeroesService {
 
   getOne(character: string) {
     this.store.setLoading(true);
-    return combineLatest([ this.pouchDbService.getOne(character) ,
-      this.http.get<Hero>(`${this.restBase}/${character}`)])
-      .pipe(
-        map(([dbOne,restOne])=>({...restOne,...dbOne})),
-        finalize(() => this.store.setLoading(false))
-        );
+    return combineLatest([
+      this.pouchDbService.getOne(character),
+      this.http.get<Hero>(`${this.restBase}/${character}`),
+    ]).pipe(
+      map(([dbOne, restOne]) => ({ ...restOne, ...dbOne })),
+      finalize(() => this.store.setLoading(false))
+    );
   }
 
   /**
@@ -77,11 +70,10 @@ export class HeroesService {
    */
   upsertOne(hero: Hero) {
     this.store.setLoading(true);
-    return this.pouchDbService
-      .upsertOne(hero)
-      .pipe(
-        delay(500),
-        finalize(() => this.store.setLoading(false)));
+    return this.pouchDbService.upsertOne(hero).pipe(
+      delay(500), //to show spinner
+      finalize(() => this.store.setLoading(false))
+    );
   }
   /**
    *  Mark a hero as deleted in local db, because API is read only
@@ -91,7 +83,7 @@ export class HeroesService {
   deleteOne(hero: Hero) {
     this.store.setLoading(true);
     return this.pouchDbService.deleteOne(hero).pipe(
-      switchMap(() => this.store.remove(hero.id)),
+      map(() => this.store.remove(hero.id)),
       take(1),
       finalize(() => this.store.setLoading(false))
     );

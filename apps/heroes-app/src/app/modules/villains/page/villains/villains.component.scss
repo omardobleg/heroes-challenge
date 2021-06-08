@@ -1,0 +1,12 @@
+.card {
+  border: 1px solid lightblue;
+  border-radius: 1rem;
+  padding: 1rem;
+
+  .body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}

@@ -1,4 +1,6 @@
+import { EllipsisPipe } from './../pipes/ellipsis.pipe';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CardComponent } from './card.component';
 
@@ -8,9 +10,10 @@ describe('CardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardComponent ]
-    })
-    .compileComponents();
+      imports: [NoopAnimationsModule],
+      declarations: [CardComponent, EllipsisPipe],
+      providers: [],
+    }).compileComponents();
   });
 
   beforeEach(() => {
