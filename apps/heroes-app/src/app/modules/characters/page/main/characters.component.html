@@ -23,12 +23,19 @@
 </div>
 <div class="tui_row">
   <tui-pagination
-    class="tui-space_vertical-5"
+    class="tui-space_vertical-5 space-bottom"
     *ngIf="paginationStatus | async as pagination"
     [length]="pagination.pages"
     [index]="pagination.currentPage - 1"
     (indexChange)="goToPage($event)"
   ></tui-pagination>
 </div>
-<a class="float-button" tuiIconButton [size]="'l'" tuiIconButtontype="button" icon="tuiIconPlusLarge" [routerLink]="['./create']">
+<a
+  class="float-button"
+  tuiIconButton
+  [size]="'l'"
+  tuiIconButtontype="button"
+  icon="tuiIconPlusLarge"
+  [routerLink]="['./create']"
+>
 </a>

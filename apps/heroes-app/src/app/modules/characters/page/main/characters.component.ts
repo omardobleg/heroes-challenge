@@ -1,10 +1,16 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { CardConfig, FilterSearch, Hero } from '@heroes/data';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { BehaviorSubject, combineLatest, of } from 'rxjs';
-import { distinct, distinctUntilChanged, filter, map, switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
+import {
+  filter,
+  map,
+  switchMap,
+  takeUntil,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { HeroesQuery } from '../../service/heroes.query';
 import { HeroesService } from '../../service/heroes.service';
 import { ModalDeleteComponent } from './../../components/modal-delete/modal-delete.component';
@@ -13,6 +19,7 @@ import { ModalDeleteComponent } from './../../components/modal-delete/modal-dele
   selector: 'heroes-characters',
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TuiDestroyService],
 })
 export class CharactersComponent {
@@ -21,7 +28,7 @@ export class CharactersComponent {
     @Inject(HeroesQuery) private readonly heroesQuery: HeroesQuery,
     private readonly destroyService: TuiDestroyService,
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService
-  ) { }
+  ) {}
   private readonly dialog = this.dialogService.open<number>(
     new PolymorpheusComponent(ModalDeleteComponent)
   );
@@ -35,7 +42,7 @@ export class CharactersComponent {
     switchMap(([page, filter]) => this.heroService.getAll(page, filter)),
     switchMap(() => this.heroesQuery.selectAll()),
     map((heroes) => heroes.map((hero) => this.mapHeroToCard(hero)))
-  )
+  );
 
   filter(filter: FilterSearch) {
     this.filter$.next(filter);
@@ -57,7 +64,7 @@ export class CharactersComponent {
       )
       .subscribe();
   }
-  
+
   private mapHeroToCard({
     id,
     name,

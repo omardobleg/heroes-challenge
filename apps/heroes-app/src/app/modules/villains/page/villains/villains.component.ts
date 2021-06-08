@@ -1,7 +1,6 @@
-import { villains } from './villains-conf';
-import { Component, Inject, Injector, OnInit } from '@angular/core';
-import { TuiDialogService } from '@taiga-ui/core';
+import { Component } from '@angular/core';
 import { CardConfig, Hero } from '@heroes/data';
+import { villains } from './villains-conf';
 
 @Component({
   selector: 'heroes-villains',
@@ -9,10 +8,7 @@ import { CardConfig, Hero } from '@heroes/data';
   styleUrls: ['./villains.component.scss'],
 })
 export class VillainsComponent {
-  constructor(
-    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
-    @Inject(Injector) private readonly injector: Injector
-  ) {}
+  constructor() {}
 
   public items = villains.result.map((v) =>
     this.mapHeroToCard((v as unknown) as Hero)
